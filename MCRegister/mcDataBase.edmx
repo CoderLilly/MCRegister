@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mCoyoteDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="custFirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="custLastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="custAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="custEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="custPhone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prodName" Type="nvarchar" MaxLength="100" />
+          <Property Name="prodCode" Type="nchar" MaxLength="8" />
+          <Property Name="prodPrice" Type="decimal" Precision="7" Scale="2" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="transDate" Type="date" Nullable="false" />
+          <Property Name="transGrossTotal" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="transTax" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="transDiscount" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="transNetTotal" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="mCoyoteDBModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mCoyoteDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="custFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="custLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="custAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="custEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="custPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="prodCode" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="prodPrice" Type="Decimal" Precision="7" Scale="2" />
+        </EntityType>
+        <EntityContainer Name="mCoyoteDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Transactions" EntityType="mCoyoteDBModel.Transaction" />
+        </EntityContainer>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="transGrossTotal" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="transTax" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="transDiscount" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="transNetTotal" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mCoyoteDBModelStoreContainer" CdmEntityContainer="mCoyoteDBEntities1">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="mCoyoteDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="custFirstName" ColumnName="custFirstName" />
+                <ScalarProperty Name="custLastName" ColumnName="custLastName" />
+                <ScalarProperty Name="custAddress" ColumnName="custAddress" />
+                <ScalarProperty Name="custEmail" ColumnName="custEmail" />
+                <ScalarProperty Name="custPhone" ColumnName="custPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="mCoyoteDBModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="prodName" ColumnName="prodName" />
+                <ScalarProperty Name="prodCode" ColumnName="prodCode" />
+                <ScalarProperty Name="prodPrice" ColumnName="prodPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="mCoyoteDBModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="transNetTotal" ColumnName="transNetTotal" />
+                <ScalarProperty Name="transDiscount" ColumnName="transDiscount" />
+                <ScalarProperty Name="transTax" ColumnName="transTax" />
+                <ScalarProperty Name="transGrossTotal" ColumnName="transGrossTotal" />
+                <ScalarProperty Name="transDate" ColumnName="transDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

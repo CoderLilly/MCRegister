@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <taxRate>11.52</taxRate>
+  <departmentKeys>
+    <dept1>Wands</dept1>
+    <dept2>Div/Scry</dept2>
+    <dept3>Gifts</dept3>
+    <dept4>Jewelry</dept4>
+    <dept5>Musical</dept5>
+    <dept6>Journals</dept6>
+    <dept7>Wards</dept7>
+    <dept8>Ritual</dept8>
+    <dept9>Books</dept9>
+    <dept10>Cosplay</dept10>
+    <dept11>Gaming</dept11>
+    <dept12>Imperf</dept12>
+    <dept13>Misc.</dept13>
+    <dept14>Misc.</dept14>
+    <dept15>Misc.</dept15>
+  </departmentKeys>
+</Settings>
